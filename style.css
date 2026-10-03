@@ -1,0 +1,1400 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f4eee4;
+    color: #3b2926;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow-x: hidden;
+}
+
+body.locked {
+    overflow: hidden;
+}
+
+:root {
+    --cream: #f4eee4;
+    --cream2: #eee2d3;
+    --paper: #fffaf2;
+    --maroon: #702d35;
+    --maroon-dark: #4d2228;
+    --gold: #b38b4d;
+    --gold-light: #d5b878;
+    --green: #61785b;
+    --text: #3b2926;
+    --muted: #75655d;
+}
+
+
+/* ==================================================
+   OPENING
+================================================== */
+
+#opening {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 52%,
+            #fffaf1 0%,
+            #f4eee4 50%,
+            #e6d5c1 100%
+        );
+
+    transition:
+        opacity 1.3s ease,
+        visibility 1.3s ease;
+}
+
+#opening.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* subtle texture */
+
+.opening-bg {
+    position: absolute;
+    inset: 0;
+    opacity: .18;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(179,139,77,.25) 1px,
+            transparent 1px
+        );
+
+    background-size: 26px 26px;
+}
+
+
+/* ==================================================
+   MOON
+================================================== */
+
+.opening-moon {
+    position: absolute;
+
+    width: 82px;
+    height: 82px;
+
+    top: 7%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #d2b16c;
+
+    box-shadow:
+        0 0 45px rgba(210,177,108,.35);
+
+    animation:
+        moonFloat 5s ease-in-out infinite;
+}
+
+.opening-moon span {
+    position: absolute;
+
+    width: 75px;
+    height: 75px;
+
+    top: -8px;
+    left: 17px;
+
+    border-radius: 50%;
+
+    background: #f4eee4;
+}
+
+
+/* ==================================================
+   LANTERNS
+================================================== */
+
+.lantern {
+    position: absolute;
+
+    top: 0;
+
+    width: 50px;
+
+    text-align: center;
+
+    color: var(--gold);
+
+    opacity: .8;
+}
+
+.lantern-one {
+    left: 13%;
+}
+
+.lantern-two {
+    right: 13%;
+}
+
+.lantern i {
+    display: block;
+
+    width: 1px;
+    height: 60px;
+
+    margin: auto;
+
+    background: var(--gold);
+}
+
+.lantern b {
+    display: block;
+
+    font-size: 29px;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(210,177,108,.7)
+        );
+}
+
+
+/* ==================================================
+   FLOWERS
+================================================== */
+
+.opening-flower {
+    position: absolute;
+
+    color: var(--maroon);
+
+    font-size: 75px;
+
+    opacity: .18;
+}
+
+.flower-left {
+    left: -20px;
+    bottom: 12%;
+    transform: rotate(-25deg);
+}
+
+.flower-right {
+    right: -20px;
+    bottom: 16%;
+    transform: rotate(25deg);
+}
+
+
+/* ==================================================
+   ROYAL DOOR
+================================================== */
+
+.royal-door {
+    position: absolute;
+
+    left: 50%;
+    bottom: -3%;
+
+    transform: translateX(-50%);
+
+    width: min(84vw, 420px);
+    height: 69vh;
+
+    border: 5px solid #b88d52;
+
+    border-bottom: none;
+
+    border-radius:
+        220px 220px 0 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d7b487,
+            #f0d7b0,
+            #c99d67
+        );
+
+    box-shadow:
+        inset 0 0 0 9px rgba(255,255,255,.3),
+        0 20px 70px rgba(80,45,30,.12);
+
+    animation:
+        doorAppear
+        1.8s
+        ease both;
+}
+
+.door-arch {
+    position: absolute;
+
+    left: 9%;
+    right: 9%;
+    top: 8%;
+    bottom: 0;
+
+    border:
+        3px solid
+        rgba(112,45,53,.55);
+
+    border-bottom: none;
+
+    border-radius:
+        190px 190px 0 0;
+}
+
+.door-arch-inner {
+    position: absolute;
+
+    inset: 13px;
+
+    border:
+        1px solid
+        rgba(179,139,77,.8);
+
+    border-bottom: none;
+
+    border-radius:
+        180px 180px 0 0;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center 50% 45%,
+            #fffdf8 0%,
+            #f9eedc 45%,
+            #d8b17e 100%
+        );
+}
+
+.door-glow {
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: 50%;
+    top: 35%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,249,222,.85);
+
+    filter: blur(25px);
+}
+
+.door-top-ornament {
+    position: absolute;
+
+    top: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--maroon);
+
+    font-size: 20px;
+
+    z-index: 2;
+}
+
+.door-flower {
+    position: absolute;
+
+    color: var(--maroon);
+
+    font-size: 48px;
+
+    opacity: .7;
+}
+
+.flower-a {
+    left: 5%;
+    top: 20%;
+}
+
+.flower-b {
+    right: 5%;
+    top: 28%;
+}
+
+.door-leaf {
+    position: absolute;
+
+    width: 35px;
+    height: 16px;
+
+    border-radius: 100% 0;
+
+    background: var(--green);
+
+    opacity: .7;
+}
+
+.leaf-a {
+    left: 10%;
+    top: 32%;
+    transform: rotate(-30deg);
+}
+
+.leaf-b {
+    right: 10%;
+    top: 38%;
+    transform: rotate(40deg);
+}
+
+
+/* ==================================================
+   OPENING CONTENT
+================================================== */
+
+.opening-content {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    top: 45%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(88%, 520px);
+
+    text-align: center;
+
+    animation:
+        contentAppear
+        1.4s
+        .4s
+        ease both;
+}
+
+.arabic-small {
+    font-size: 21px;
+
+    color: var(--maroon);
+
+    margin-bottom: 16px;
+}
+
+.tiny-line {
+    width: 55px;
+    height: 1px;
+
+    margin: auto;
+
+    background: var(--gold);
+}
+
+.opening-label {
+    margin-top: 16px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+
+    color: var(--muted);
+}
+
+.opening-content h1 {
+    margin-top: 18px;
+
+    font-size:
+        clamp(52px, 15vw, 82px);
+
+    font-weight: 400;
+
+    letter-spacing: 4px;
+
+    color: var(--maroon-dark);
+}
+
+.opening-subtitle {
+    margin-top: 10px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    color: var(--muted);
+}
+
+#openInvitation {
+    margin-top: 27px;
+
+    padding: 15px 23px;
+
+    border: 1px solid var(--gold);
+
+    background:
+        rgba(255,250,242,.75);
+
+    color: var(--maroon-dark);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        .35s ease;
+}
+
+#openInvitation b {
+    margin-left: 13px;
+
+    font-size: 14px;
+}
+
+#openInvitation:hover {
+    background: var(--maroon);
+
+    color: white;
+
+    transform: translateY(-3px);
+}
+
+
+/* ==================================================
+   TRANSITION MOON
+================================================== */
+
+#transitionMoon {
+    position: absolute;
+
+    z-index: 50;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.2);
+
+    font-size: 100px;
+
+    color: #d7b66e;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+#opening.transition #transitionMoon {
+    animation:
+        moonTravel
+        1.7s
+        cubic-bezier(.65,0,.25,1)
+        forwards;
+}
+
+
+/* ==================================================
+   MAIN
+================================================== */
+
+#website {
+    position: relative;
+
+    opacity: 0;
+
+    overflow: hidden;
+
+    transition:
+        opacity 1.3s ease;
+}
+
+#website.show {
+    opacity: 1;
+}
+
+
+/* ==================================================
+   MAIN MOON
+================================================== */
+
+.main-moon {
+    position: absolute;
+
+    right: -22px;
+    top: 45px;
+
+    z-index: 3;
+
+    font-size: 150px;
+
+    line-height: 1;
+
+    color: rgba(179,139,77,.12);
+
+    transform: rotate(-18deg);
+}
+
+
+/* ==================================================
+   BOTANICAL
+================================================== */
+
+.branch {
+    position: absolute;
+
+    z-index: 2;
+
+    color: var(--maroon);
+
+    opacity: .22;
+
+    font-size: 70px;
+
+    line-height: .55;
+
+    pointer-events: none;
+}
+
+.branch-left {
+    left: -25px;
+    top: 160px;
+
+    transform: rotate(-30deg);
+}
+
+.branch-right {
+    right: -25px;
+    top: 390px;
+
+    transform: rotate(30deg);
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        90px 20px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #fffdf8,
+            #f4eee4 70%
+        );
+}
+
+.hero-frame {
+    position: relative;
+
+    width: min(100%, 650px);
+
+    padding:
+        75px 25px;
+
+    border:
+        1px solid
+        rgba(179,139,77,.38);
+}
+
+.hero-frame::before,
+.hero-frame::after {
+    content: "";
+
+    position: absolute;
+
+    width: 75px;
+    height: 75px;
+
+    border-color:
+        var(--gold);
+
+    border-style: solid;
+}
+
+.hero-frame::before {
+    left: -1px;
+    top: -1px;
+
+    border-width:
+        1px 0 0 1px;
+}
+
+.hero-frame::after {
+    right: -1px;
+    bottom: -1px;
+
+    border-width:
+        0 1px 1px 0;
+}
+
+.eyebrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: var(--gold);
+}
+
+.arabic-title {
+    margin-top: 22px;
+
+    font-size: 38px;
+
+    color: var(--maroon);
+}
+
+.intro {
+    width: min(100%, 440px);
+
+    margin:
+        22px auto 32px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    color: var(--muted);
+}
+
+.names h1 {
+    font-size:
+        clamp(38px, 9vw, 67px);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    color: var(--maroon-dark);
+}
+
+.name-amp {
+    margin:
+        13px 0;
+
+    font-size: 23px;
+
+    color: var(--gold);
+}
+
+.ornament {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: min(80%, 290px);
+
+    margin: 35px auto;
+}
+
+.ornament span {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        rgba(179,139,77,.45);
+}
+
+.ornament b {
+    color: var(--gold);
+}
+
+.event-date {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+}
+
+.date-number {
+    font-size: 62px;
+
+    color: var(--maroon);
+}
+
+.date-info {
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: left;
+}
+
+.date-info strong {
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+.date-info span {
+    margin-top: 4px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    color: var(--muted);
+}
+
+.date-divider {
+    width: 1px;
+    height: 38px;
+
+    background:
+        rgba(179,139,77,.45);
+}
+
+.time-info small {
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: var(--muted);
+
+    margin-bottom: 5px;
+}
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
+
+.message {
+    min-height: 80vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 90px 20px;
+
+    background: #eadccd;
+}
+
+.content-width {
+    width: min(100%, 650px);
+}
+
+.message h2,
+.family h2,
+.final h2 {
+    margin-top: 25px;
+
+    font-size:
+        clamp(38px, 9vw, 64px);
+
+    line-height: 1.05;
+
+    font-weight: 400;
+
+    color: var(--maroon-dark);
+}
+
+.message p:last-child,
+.final p:not(.eyebrow) {
+    width: min(100%, 500px);
+
+    margin:
+        28px auto 0;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    color: var(--muted);
+}
+
+
+/* ==================================================
+   COUNTDOWN
+================================================== */
+
+.countdown-section {
+    min-height: 70vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 90px 20px;
+
+    background:
+        var(--maroon);
+
+    color: white;
+}
+
+.countdown-section h2 {
+    margin-top: 22px;
+
+    font-size:
+        clamp(37px, 9vw, 60px);
+
+    font-weight: 400;
+}
+
+.countdown-grid {
+    width: min(100%, 600px);
+
+    margin:
+        45px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+}
+
+.countdown-grid div {
+    padding:
+        23px 5px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+}
+
+.countdown-grid strong {
+    display: block;
+
+    font-size:
+        clamp(28px, 7vw, 52px);
+
+    font-weight: 400;
+
+    color: var(--gold-light);
+}
+
+.countdown-grid span {
+    display: block;
+
+    margin-top: 6px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 6px;
+
+    letter-spacing: 2px;
+
+    opacity: .75;
+}
+
+
+/* ==================================================
+   VENUE
+================================================== */
+
+.venue {
+    min-height: 90vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 90px 20px;
+
+    text-align: center;
+
+    background: #f4eee4;
+}
+
+.venue-card {
+    width: min(100%, 620px);
+
+    padding:
+        65px 25px;
+
+    border:
+        1px solid
+        rgba(179,139,77,.45);
+
+    background:
+        rgba(255,250,242,.55);
+}
+
+.venue-symbol {
+    margin-top: 25px;
+
+    color: var(--gold);
+
+    font-size: 23px;
+}
+
+.venue h2 {
+    margin-top: 18px;
+
+    font-size:
+        clamp(35px, 8vw, 58px);
+
+    font-weight: 400;
+
+    color: var(--maroon-dark);
+}
+
+.address {
+    margin-top: 22px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    color: var(--muted);
+}
+
+.venue-buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 32px;
+}
+
+.primary-button,
+.secondary-button {
+    width: min(100%, 270px);
+
+    padding:
+        16px 18px;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2.5px;
+
+    transition: .35s ease;
+}
+
+.primary-button {
+    border:
+        1px solid
+        var(--gold);
+
+    color: var(--maroon-dark);
+
+    background:
+        transparent;
+}
+
+.primary-button span {
+    margin-left: 12px;
+}
+
+.primary-button:hover {
+    background: var(--gold);
+
+    color: white;
+}
+
+.secondary-button {
+    border:
+        1px solid
+        rgba(112,45,53,.35);
+
+    color: var(--maroon);
+
+    background: transparent;
+}
+
+.secondary-button:hover {
+    background: var(--maroon);
+
+    color: white;
+}
+
+
+/* ==================================================
+   FAMILY
+================================================== */
+
+.family {
+    min-height: 90vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding:
+        90px 20px;
+
+    background: #eadccd;
+}
+
+.family-grid {
+    width: min(100%, 500px);
+
+    margin:
+        42px auto 0;
+}
+
+.family-grid div {
+    padding:
+        18px 8px;
+
+    border-bottom:
+        1px solid
+        rgba(179,139,77,.3);
+
+    font-size: 18px;
+
+    color: var(--text);
+}
+
+.family-grid div:first-child {
+    border-top:
+        1px solid
+        rgba(179,139,77,.3);
+}
+
+
+/* ==================================================
+   FINAL
+================================================== */
+
+.final {
+    min-height: 90vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 90px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffaf2,
+            #e6d7c4
+        );
+}
+
+.final-inner {
+    width: min(100%, 650px);
+}
+
+.final-moon {
+    font-size: 72px;
+
+    color: var(--gold);
+
+    margin-bottom: 25px;
+
+    animation:
+        finalMoon
+        4s ease-in-out infinite;
+}
+
+.final-names {
+    margin-top: 40px;
+
+    font-size: 22px;
+
+    color: var(--maroon);
+}
+
+.final-names span {
+    margin:
+        0 10px;
+
+    color: var(--gold);
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer {
+    padding:
+        55px 20px;
+
+    text-align: center;
+
+    background: #392725;
+
+    color: #d9cbb8;
+}
+
+footer span {
+    color: var(--gold);
+
+    font-size: 20px;
+}
+
+footer p {
+    margin-top: 12px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 4px;
+}
+
+
+/* ==================================================
+   REVEAL
+================================================== */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* ==================================================
+   ANIMATIONS
+================================================== */
+
+@keyframes contentAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translate(-50%, -46%);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%);
+    }
+}
+
+@keyframes doorAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(-50%)
+            scale(.94);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+}
+
+@keyframes moonFloat {
+
+    0%,100% {
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            translateY(-9px);
+    }
+}
+
+@keyframes moonTravel {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(.2);
+    }
+
+    25% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                25vw,
+                -45vh
+            )
+            scale(3.5);
+    }
+}
+
+@keyframes finalMoon {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotate(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(-8deg);
+    }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 600px) {
+
+    .royal-door {
+        width: 86vw;
+        height: 64vh;
+    }
+
+    .opening-content {
+        top: 46%;
+    }
+
+    .opening-content h1 {
+        font-size: 55px;
+    }
+
+    .lantern-one {
+        left: 5%;
+    }
+
+    .lantern-two {
+        right: 5%;
+    }
+
+    .lantern i {
+        height: 45px;
+    }
+
+    .lantern b {
+        font-size: 24px;
+    }
+
+    .hero-frame {
+        padding:
+            60px 18px;
+    }
+
+    .event-date {
+        gap: 11px;
+    }
+
+    .date-number {
+        font-size: 48px;
+    }
+
+    .date-info strong {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+
+    .countdown-grid {
+        gap: 4px;
+    }
+
+    .countdown-grid div {
+        padding:
+            18px 2px;
+    }
+
+    .countdown-grid strong {
+        font-size: 27px;
+    }
+
+    .family-grid div {
+        font-size: 16px;
+    }
+
+    .main-moon {
+        font-size: 110px;
+    }
+}
